@@ -73,7 +73,7 @@ public class PlayerController : MonoBehaviour
         if (transform.localScale.x < 0.01f)
         {
             falling = false;
-            GameManager.Instance().LoseRound(fallingPosition);
+            GameplayManager.Instance().LoseRound(fallingPosition);
             Debug.Log("Done falling");
         }
     }
