@@ -15,6 +15,8 @@ public class PlayerController : MonoBehaviour
     bool aiming = false;
     bool ready = true;
 
+    public bool active;
+
     public static PlayerController Instance()
     {
         return instance;
@@ -22,6 +24,7 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
+        active = true;
         instance = this;
     }
 
@@ -30,10 +33,16 @@ public class PlayerController : MonoBehaviour
     {
         line = gameObject.GetComponentInChildren<LineRenderer>();
         HoleController.enableMovement(true);
+        GameplayManager game = GameplayManager.Instance();
     }
 
     void ShootBall()
     {
+        GameplayManager game = GameplayManager.Instance();
+        if (!game.active)
+            game.StartMatch();
+        game.active = true;
+        game.strokes--;
         aiming = false;
         Debug.Log("SHOOTING BALL TO " + endPos.ToString());
         Vector2 direction = startPos - endPos;
@@ -72,60 +81,68 @@ public class PlayerController : MonoBehaviour
         }
         if (transform.localScale.x < 0.01f)
         {
-            falling = false;
             GameplayManager.Instance().LoseRound(fallingPosition);
             Debug.Log("Done falling");
+            active = false;
         }
     }
 
-    
+    public void Disable()
+    {
+        line.enabled = false;
+        active = false;
+    }
+
     // Update is called once per frame
     void Update()
     {
-        if (falling)
+        if (active)
         {
-            HandleFall();
-        }
-
-        if (Input.GetMouseButtonDown(0) && !aiming)
-        {
-            aiming = true;
-        }
-
-        if (Input.GetMouseButtonUp(0) && aiming)
-        {
-            ShootBall();
-        }
-
-
-        if (aiming)
-        {
-            line.enabled = true;
-            line.SetPosition(0, transform.position);
-            Vector2 shootPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            shootPos = (Vector2)transform.position + ((Vector2)transform.position - shootPos);
-            endPos = shootPos;
-            startPos = transform.position;
-
-            //CHECK IF WE ARE OVER MAX DISTANCE
-            if (Vector2.Distance(transform.position, shootPos) > 5)
+            if (falling)
             {
-                Vector2 dir = endPos - (Vector2)transform.position;
-                endPos = (Vector2)transform.position + (dir.normalized * 5);
+                TimerController.Instance().timing = false;
+                if (!GameplayManager.Instance().lost)
+                    HandleFall();
+                return;
             }
 
-            float distance = Vector3.Distance(transform.position, endPos);
-            line.material.mainTextureScale = new Vector2(distance * 0.2f, 1);
+            if (Input.GetMouseButtonDown(0) && !aiming)
+            {
+                aiming = true;
+            }
 
-            line.SetPosition(1, endPos);
-        }
-        else
-        {
-            line.enabled = false;
-        }
+            if (Input.GetMouseButtonUp(0) && aiming)
+            {
+                if (GameplayManager.Instance().strokes != 0)
+                    ShootBall();
+            }
 
-        if (falling)
-        {
+
+            if (aiming)
+            {
+                line.enabled = true;
+                line.SetPosition(0, transform.position);
+                Vector2 shootPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                shootPos = (Vector2)transform.position + ((Vector2)transform.position - shootPos);
+                endPos = shootPos;
+                startPos = transform.position;
+
+                //CHECK IF WE ARE OVER MAX DISTANCE
+                if (Vector2.Distance(transform.position, shootPos) > 5)
+                {
+                    Vector2 dir = endPos - (Vector2)transform.position;
+                    endPos = (Vector2)transform.position + (dir.normalized * 5);
+                }
+
+                float distance = Vector3.Distance(transform.position, endPos);
+                line.material.mainTextureScale = new Vector2(distance * 0.2f, 1);
+
+                line.SetPosition(1, endPos);
+            }
+            else
+            {
+                line.enabled = false;
+            }
 
         }
     }

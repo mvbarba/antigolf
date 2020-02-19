@@ -6,18 +6,35 @@ using TMPro;
 public class TimerController : MonoBehaviour
 {
     public float timeRemaining = 1f;
-    bool timing = false;
+    public bool timing;
 
-    private TextMeshProUGUI timerText;
+    public TextMeshProUGUI timerText;
     private float startingFont;
     private float timeToTarget;
-    float t; 
+    float t;
+
+    private static TimerController instance;
+
+    private void Awake()
+    {
+        timing = false;
+        instance = this;
+    }
+
+    public static TimerController Instance()
+    {
+        return instance;
+    }
 
     // Start is called before the first frame update
     void Start()
     {
-        timerText = GetComponent<TextMeshProUGUI>();
         startingFont = timerText.fontSize;
+    }
+
+    public void SetTimerText(float num)
+    {
+        timerText.text = num.ToString("#0.00") + "s";
     }
 
     public void StartTimer(float seconds)
@@ -36,7 +53,7 @@ public class TimerController : MonoBehaviour
             {
                 timeRemaining = 0.0f;
                 timing = false;
-                UIManager.Instance().OpenBigText(Color.cyan, "HOLE IN NONE!");
+                GameplayManager.Instance().WinRound();
             }
             else
             {

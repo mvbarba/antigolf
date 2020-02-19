@@ -7,6 +7,7 @@ public class UIManager : MonoBehaviour
 {
     public TimerController timer;
     public GameObject bigText;
+    public TextMeshProUGUI strokes;
     private static UIManager instance;
 
     private void Awake()
@@ -35,6 +36,11 @@ public class UIManager : MonoBehaviour
         yield break;
     }
 
+    public void SetStrokes(int count)
+    {
+        strokes.text = (count < 0) ? "infinite" : count.ToString();
+    }
+
     public static UIManager Instance()
     {
         return instance;
@@ -44,7 +50,7 @@ public class UIManager : MonoBehaviour
     void Start()
     {
         //OpenBigText(Color.cyan, "TEST!!!!");
-        timer.StartTimer(10f);
+        //timer.StartTimer(10f);
     }
 
     // Update is called once per frame
