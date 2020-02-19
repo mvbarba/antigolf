@@ -42,6 +42,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: MenuBackground
+    uniqueID: 3180333231
+    locked: 0
   - name: Background
     uniqueID: 451348981
     locked: 0
@@ -50,4 +53,7 @@ TagManager:
     locked: 0
   - name: UI
     uniqueID: 3832799659
+    locked: 0
+  - name: Modal
+    uniqueID: 654390995
     locked: 0

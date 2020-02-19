@@ -10,4 +10,11 @@ public static class Constants
     //Triggers
     public const string ANIM_OPEN = "Open";
     public const string ANIM_CLOSE = "Close";
+
+    public enum Levels
+    {
+        Menu,
+        Level1,
+        Level2
+    }
 }

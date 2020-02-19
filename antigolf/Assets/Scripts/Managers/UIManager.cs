@@ -14,7 +14,6 @@ public class UIManager : MonoBehaviour
         instance = this;
     }
 
-
     public void OpenBigText(Color color, string text)
     {
         TextMeshProUGUI tmp = bigText.GetComponent<TextMeshProUGUI>();
