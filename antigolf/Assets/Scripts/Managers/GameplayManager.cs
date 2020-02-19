@@ -24,8 +24,7 @@ public class GameplayManager : MonoBehaviour
     public void LoseRound(Vector2 position)
     {
         blackScreen = Instantiate(blackScreenPrefab.gameObject, position, Quaternion.identity);
-        //UIManager.Instance().OpenBigText(Color.yellow, "YOU LOSE!");
-        UIManager.Instance().CloseBigText();
+        UIManager.Instance().OpenBigText();
     }
 
     // Start is called before the first frame update

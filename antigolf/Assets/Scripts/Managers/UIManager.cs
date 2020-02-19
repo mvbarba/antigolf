@@ -1,11 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
 
 public class UIManager : MonoBehaviour
 {
-    public TimerController timer;
     public GameObject bigText;
     private static UIManager instance;
 
@@ -14,26 +12,9 @@ public class UIManager : MonoBehaviour
         instance = this;
     }
 
-
-    public void OpenBigText(Color color, string text)
+    public void OpenBigText()
     {
-        TextMeshProUGUI tmp = bigText.GetComponent<TextMeshProUGUI>();
-        tmp.text = text;
-        tmp.color = color;
         bigText.SetActive(true);
-    }
-
-    public void CloseBigText()
-    {
-        StartCoroutine(CloseBigTextRoutine());
-    }
-
-    IEnumerator CloseBigTextRoutine()
-    {
-        bigText.GetComponent<Animator>().SetTrigger(Constants.ANIM_CLOSE);
-        yield return new WaitForSeconds(5f);
-        bigText.SetActive(false);
-        yield break;
     }
 
     public static UIManager Instance()
@@ -44,8 +25,7 @@ public class UIManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //OpenBigText(Color.cyan, "TEST!!!!");
-        timer.StartTimer(10f);
+        
     }
 
     // Update is called once per frame
