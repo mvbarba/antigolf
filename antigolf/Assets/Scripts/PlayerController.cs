@@ -20,10 +20,14 @@ public class PlayerController : MonoBehaviour
         return instance;
     }
 
+    private void Awake()
+    {
+        instance = this;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
-        instance = this;
         line = gameObject.GetComponentInChildren<LineRenderer>();
         HoleController.enableMovement(true);
     }
@@ -69,10 +73,12 @@ public class PlayerController : MonoBehaviour
         if (transform.localScale.x < 0.01f)
         {
             falling = false;
+            GameManager.Instance().LoseRound(fallingPosition);
             Debug.Log("Done falling");
         }
     }
 
+    
     // Update is called once per frame
     void Update()
     {
