@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    private static PlayerController instance;
     public float speed = -100;
 
     LineRenderer line;
@@ -14,10 +15,17 @@ public class PlayerController : MonoBehaviour
     bool aiming = false;
     bool ready = true;
 
+    public static PlayerController Instance()
+    {
+        return instance;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
+        instance = this;
         line = gameObject.GetComponentInChildren<LineRenderer>();
+        HoleController.enableMovement(true);
     }
 
     void ShootBall()
@@ -49,6 +57,7 @@ public class PlayerController : MonoBehaviour
         fallingPosition = position;
         startingPosition = transform.position;
         startingScale = transform.localScale;
+        HoleController.enableMovement(false);
     }
 
     private void HandleFall()
