@@ -4,6 +4,16 @@ using UnityEngine;
 
 public class HoleController : MonoBehaviour
 {
+
+    public enum HoleMoveType
+    {
+        Static,
+        Linear,
+        Homing
+    }
+
+    public HoleMoveType moveType;
+
     Transform target; 
     private Rigidbody2D rb;
     public float speed = 5f;
@@ -42,14 +52,17 @@ public class HoleController : MonoBehaviour
         {
             if (isMoving)
             {
-                Vector2 direction = (Vector2)target.position - rb.position;
-                direction.Normalize();
+                if (moveType == HoleMoveType.Homing)
+                {
+                    Vector2 direction = (Vector2)target.position - rb.position;
+                    direction.Normalize();
 
-                float rotateAmount = Vector3.Cross(direction, transform.up).z;
+                    float rotateAmount = Vector3.Cross(direction, transform.up).z;
 
-                rb.angularVelocity = -rotateAmount * rotateSpeed;
+                    rb.angularVelocity = -rotateAmount * rotateSpeed;
 
-                rb.velocity = transform.up * speed;
+                    rb.velocity = transform.up * speed;
+                }
             }
             else
             {

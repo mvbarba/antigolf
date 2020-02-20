@@ -16,7 +16,19 @@ public class SingleSessionPrefs : MonoBehaviour
 
     private void Awake()
     {
-        instance = this;
-        DontDestroyOnLoad(this.gameObject);
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(this.gameObject);
+        }
+        else
+        {
+            Destroy(this.gameObject);
+        }
+    }
+
+    private void Update()
+    {
+        //Debug.Log(SeenMenu);
     }
 }

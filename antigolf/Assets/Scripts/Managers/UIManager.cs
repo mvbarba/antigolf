@@ -7,6 +7,7 @@ public class UIManager : MonoBehaviour
 {
     public TimerController timer;
     public GameObject bigText;
+    public GameObject menus;
     public TextMeshProUGUI strokes;
     private static UIManager instance;
 
@@ -36,6 +37,11 @@ public class UIManager : MonoBehaviour
         yield break;
     }
 
+    public void OpenMenus()
+    {
+        menus.SetActive(true);
+    }
+
     public void SetStrokes(int count)
     {
         strokes.text = (count < 0) ? "infinite" : count.ToString();
@@ -44,6 +50,19 @@ public class UIManager : MonoBehaviour
     public static UIManager Instance()
     {
         return instance;
+    }
+
+    public void MenuButtonPress()
+    {
+        LevelController.Instance().ChangeScene(0);
+    }
+
+    public void ContinueButtonPress()
+    {
+        if (GameplayManager.Instance().lost)
+            LevelController.Instance().ReloadScene();
+        else
+            LevelController.Instance().NextLevel();
     }
 
     // Start is called before the first frame update

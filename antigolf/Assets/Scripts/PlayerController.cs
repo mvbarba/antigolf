@@ -49,11 +49,17 @@ public class PlayerController : MonoBehaviour
         this.GetComponent<Rigidbody2D>().AddForce(direction * speed);
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.tag == Constants.TAG_HOLE)
+        Debug.Log("COLLIDED WITH " + collision.gameObject.name);
+        if (collision.gameObject.tag == Constants.TAG_HOLE)
         {
+            AudioManager.Instance().Play(Constants.SOUND_HOLE);
             StartFall(collision);
+        }
+        else
+        {
+            AudioManager.Instance().Play(Constants.SOUND_HIT);
         }
     }
 
@@ -61,9 +67,9 @@ public class PlayerController : MonoBehaviour
     Vector2 startingPosition;
     Vector2 startingScale; 
 
-    private void StartFall(Collider2D collision)
+    private void StartFall(Collision2D collision)
     {
-        Vector2 position = collision.transform.position;
+        Vector2 position = collision.gameObject.transform.position;
         Destroy(this.GetComponent<Rigidbody2D>());
         Destroy(this.GetComponent<CircleCollider2D>());
         falling = true;
@@ -144,6 +150,10 @@ public class PlayerController : MonoBehaviour
                 line.enabled = false;
             }
 
+        }
+        else
+        {
+            line.enabled = false;
         }
     }
 }

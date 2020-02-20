@@ -11,6 +11,10 @@ public static class Constants
     public const string ANIM_OPEN = "Open";
     public const string ANIM_CLOSE = "Close";
 
+    //Sounds
+    public const string SOUND_HIT = "hit";
+    public const string SOUND_HOLE = "hole";
+
     public enum Levels
     {
         Menu,

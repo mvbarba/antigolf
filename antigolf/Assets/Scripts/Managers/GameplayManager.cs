@@ -61,6 +61,7 @@ public class GameplayManager : MonoBehaviour
     {
         blackScreen = Instantiate(blackScreenPrefab.gameObject, position, Quaternion.identity);
         UIManager.Instance().OpenBigText(Color.yellow, "YOU LOSE!");
+        UIManager.Instance().OpenMenus();
         lost = true;
         //UIManager.Instance().CloseBigText();
     }
@@ -70,6 +71,8 @@ public class GameplayManager : MonoBehaviour
         PlayerController.Instance().Disable();
         active = false;
         UIManager.Instance().OpenBigText(Color.cyan, "HOLE IN NONE!");
+        UIManager.Instance().OpenMenus();
+        LevelController.Instance().UnlockNextLevel();
     }
 
 }

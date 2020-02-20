@@ -60,7 +60,7 @@ public class TimerController : MonoBehaviour
                 timeRemaining -= Time.deltaTime;
             }
 
-            timerText.text = timeRemaining.ToString("#0.00") + "s";
+            timerText.text = (timeRemaining < 0) ? "0.00s" : timeRemaining.ToString("#0.00") + "s";
             t += Time.deltaTime / timeToTarget;
             timerText.fontSize = Mathf.Lerp(startingFont, 65f, t);
         }
