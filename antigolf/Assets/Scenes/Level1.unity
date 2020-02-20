@@ -566,8 +566,8 @@ MonoBehaviour:
     type: 3}
   lost: 0
   active: 0
-  strokes: 5
-  time: 9999999
+  strokes: 4
+  time: 5
 --- !u!1 &857980920
 GameObject:
   m_ObjectHideFlags: 0
@@ -8100,7 +8100,7 @@ PrefabInstance:
     - target: {fileID: 9191654069342513638, guid: 77f868b8c84db5e4fab8e37378cb3e3b,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -199.99998
+      value: -200
       objectReference: {fileID: 0}
     - target: {fileID: 9191654070302391076, guid: 77f868b8c84db5e4fab8e37378cb3e3b,
         type: 3}

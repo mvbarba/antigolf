@@ -14,6 +14,7 @@ public static class Constants
     //Sounds
     public const string SOUND_HIT = "hit";
     public const string SOUND_HOLE = "hole";
+    public const string SOUND_SONG = "song";
 
     public enum Levels
     {

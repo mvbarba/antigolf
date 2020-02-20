@@ -29,7 +29,13 @@ public class AudioManager : MonoBehaviour
 
             s.source.volume = s.volume;
             s.source.pitch = s.pitch;
+            s.source.loop = s.loop;
         }
+    }
+
+    private void Start()
+    {
+        Play(Constants.SOUND_SONG);
     }
 
     public static AudioManager Instance()
