@@ -2,14 +2,70 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using System;
 
 public class UIManager : MonoBehaviour
 {
+
+    public enum UITypeGame
+    {
+        BigText, 
+        Menus,
+        Level1A,
+        Level2A,
+        Level3A,
+        Level4A,
+    }
+
+    [Serializable]
+    public struct MenuElementGame
+    {
+        public GameObject obj;
+        public UITypeGame type;
+    }
+
+    [SerializeField]
+    public MenuElementGame[] menuElementsGame;
+
     public TimerController timer;
-    public GameObject bigText;
-    public GameObject menus;
     public TextMeshProUGUI strokes;
     private static UIManager instance;
+
+
+    private void OpenUI(UITypeGame type, bool closeAll = false)
+    {
+        foreach (MenuElementGame element in menuElementsGame)
+        {
+            if (element.type == type)
+                element.obj.SetActive(true);
+            else
+            {
+                if (closeAll)
+                    element.obj.SetActive(false);
+            }
+        }
+    }
+
+    private void CloseUI(UITypeGame type)
+    {
+        foreach (MenuElementGame element in menuElementsGame)
+        {
+            if (element.type == type)
+                element.obj.SetActive(false);
+        }
+    }
+
+    private GameObject GetUI(UITypeGame type)
+    {
+        foreach (MenuElementGame element in menuElementsGame)
+        {
+            if (element.type == type)
+                return element.obj;
+        }
+        Debug.Log("Could not find UI matching type!");
+        return null;
+    }
+
 
     private void Awake()
     {
@@ -18,10 +74,25 @@ public class UIManager : MonoBehaviour
 
     public void OpenBigText(Color color, string text)
     {
-        TextMeshProUGUI tmp = bigText.GetComponent<TextMeshProUGUI>();
+        TextMeshProUGUI tmp = GetUI(UITypeGame.BigText).GetComponent<TextMeshProUGUI>();
         tmp.text = text;
         tmp.color = color;
-        bigText.SetActive(true);
+        OpenUI(UITypeGame.BigText);
+    }
+
+    public void OpenAndCloseBigText(String text)
+    {
+        StartCoroutine(OpenAndCloseBigTextRoutine(text));
+    }
+
+    IEnumerator OpenAndCloseBigTextRoutine(string text)
+    {
+        OpenBigText(Color.white, text);
+        yield return new WaitForSeconds(2f);
+        GetUI(UITypeGame.BigText).GetComponent<Animator>().SetTrigger(Constants.ANIM_CLOSE);
+        yield return new WaitForSeconds(5f);
+        CloseUI(UITypeGame.BigText);
+        yield break;
     }
 
     public void CloseBigText()
@@ -31,15 +102,15 @@ public class UIManager : MonoBehaviour
 
     IEnumerator CloseBigTextRoutine()
     {
-        bigText.GetComponent<Animator>().SetTrigger(Constants.ANIM_CLOSE);
+        GetUI(UITypeGame.BigText).GetComponent<Animator>().SetTrigger(Constants.ANIM_CLOSE);
         yield return new WaitForSeconds(5f);
-        bigText.SetActive(false);
+        CloseUI(UITypeGame.BigText);
         yield break;
     }
 
     public void OpenMenus()
     {
-        menus.SetActive(true);
+        OpenUI(UITypeGame.Menus);
     }
 
     public void SetStrokes(int count)
@@ -65,16 +136,4 @@ public class UIManager : MonoBehaviour
             LevelController.Instance().NextLevel();
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        //OpenBigText(Color.cyan, "TEST!!!!");
-        //timer.StartTimer(10f);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

@@ -8,7 +8,8 @@ public class MenuUIManager : MonoBehaviour
     public enum UIType
     {
         StartMenu,
-        LevelSelect
+        LevelSelect,
+        About
     }
 
     [Serializable]
@@ -64,6 +65,16 @@ public class MenuUIManager : MonoBehaviour
     {
         OpenUI(UIType.LevelSelect, true);
         SingleSessionPrefs.Instance().SeenMenu = true;
+    }
+
+    public void AboutButtonPressed()
+    {
+        OpenUI(UIType.About, true);
+    }
+
+    public void BackButtonPressed()
+    {
+        OpenUI(UIType.LevelSelect, true);
     }
 
     // Start is called before the first frame update
