@@ -23,6 +23,9 @@ public class HoleController : MonoBehaviour
 
     private static bool isMoving;
 
+    private SpriteRenderer sprite;
+    private Quaternion startingRotation;
+
     public static void enableMovement(bool set)
     {
         isMoving = set;
@@ -38,6 +41,8 @@ public class HoleController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         target = PlayerController.Instance().transform;
+        sprite = GetComponentInChildren<SpriteRenderer>();
+        startingRotation = sprite.transform.rotation;
     }
 
     // Update is called once per frame
@@ -73,6 +78,6 @@ public class HoleController : MonoBehaviour
         {
             rb.velocity = Vector2.zero;
         }
-
+        sprite.transform.rotation = startingRotation;
     }
 }

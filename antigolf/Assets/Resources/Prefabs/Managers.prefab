@@ -51,8 +51,8 @@ MonoBehaviour:
     type: 3}
   lost: 0
   active: 0
-  strokes: 7
-  time: 3
+  strokes: 4
+  time: 5
 --- !u!114 &1368443997525476558
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -65,7 +65,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8209c7586bba1c4e862fd1055236341, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  menuElementsGame:
+  - obj: {fileID: 0}
+    type: 0
+  - obj: {fileID: 0}
+    type: 1
+  popups:
+  - {fileID: 0}
+  - {fileID: 0}
   timer: {fileID: 0}
-  bigText: {fileID: 0}
-  menus: {fileID: 0}
   strokes: {fileID: 0}

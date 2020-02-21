@@ -24,7 +24,7 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
-        active = true;
+        active = false;
         instance = this;
     }
 
@@ -47,6 +47,7 @@ public class PlayerController : MonoBehaviour
         Debug.Log("SHOOTING BALL TO " + endPos.ToString());
         Vector2 direction = startPos - endPos;
         this.GetComponent<Rigidbody2D>().AddForce(direction * speed);
+        AudioManager.Instance().Play(Constants.SOUND_PUT);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -70,6 +71,7 @@ public class PlayerController : MonoBehaviour
     private void StartFall(Collision2D collision)
     {
         Vector2 position = collision.gameObject.transform.position;
+        Destroy(this.GetComponentInChildren<GolfballAnimator>());
         Destroy(this.GetComponent<Rigidbody2D>());
         Destroy(this.GetComponent<CircleCollider2D>());
         falling = true;
@@ -112,7 +114,7 @@ public class PlayerController : MonoBehaviour
                 return;
             }
 
-            if (Input.GetMouseButtonDown(0) && !aiming)
+            if (Input.GetMouseButtonDown(0) && !aiming && GameplayManager.Instance().strokes != 0)
             {
                 aiming = true;
             }

@@ -55,5 +55,6 @@ public class LevelController : MonoBehaviour
     {
         int num = SceneManager.GetActiveScene().buildIndex + 1;
         PlayerPrefs.SetInt("L" + num, 1);
+        PlayerPrefs.Save();
     }
 }

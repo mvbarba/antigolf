@@ -655,7 +655,7 @@ MonoBehaviour:
   sounds:
   - name: hit
     clip: {fileID: 8300000, guid: ad4695fdae3e98f48890a283cc13178a, type: 3}
-    volume: 1
+    volume: 0.402
     pitch: 1
     source: {fileID: 0}
     loop: 0
@@ -671,6 +671,18 @@ MonoBehaviour:
     pitch: 1
     source: {fileID: 0}
     loop: 1
+  - name: put
+    clip: {fileID: 8300000, guid: d5daa90181e106642b3788a704ed7c8f, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+    loop: 0
+  - name: select
+    clip: {fileID: 8300000, guid: c2c90cd8dcd8f254e9048c1283229b07, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+    loop: 0
 --- !u!4 &241477686
 Transform:
   m_ObjectHideFlags: 0

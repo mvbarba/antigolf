@@ -27,10 +27,46 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     public MenuElementGame[] menuElementsGame;
 
+    public bool isPopups;
+    public GameObject[] popups;
+    private int i;
+
     public TimerController timer;
     public TextMeshProUGUI strokes;
     private static UIManager instance;
 
+
+    private void Start()
+    {
+        StartPopups();
+    }
+
+    private void StartPopups()
+    {
+        if (isPopups)
+        {
+            popups[0].SetActive(true);
+            i = 0;
+        }
+        else
+        {
+            PlayerController.Instance().active = true;
+        }
+    }
+
+    public void NextPopup()
+    {
+        i++;
+        if (popups.Length > i)
+        {
+            popups[i].SetActive(true);
+        }
+        else
+        {
+            PlayerController.Instance().active = true;
+        }
+        popups[i - 1].SetActive(false);
+    }
 
     private void OpenUI(UITypeGame type, bool closeAll = false)
     {
