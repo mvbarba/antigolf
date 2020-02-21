@@ -29,14 +29,18 @@ public class MenuUIManager : MonoBehaviour
 
     public void LoadLevelLocked(int num)
     {
-        Constants.Levels level = (Constants.Levels)num;
+        //TODO: After game jame, enable level locking
+
+        /*Constants.Levels level = (Constants.Levels)num;
         if (PlayerPrefs.GetInt("L" + num, 0) == 1)
             LevelController.Instance().ChangeScene((Constants.Levels)num);
         else
         {
             //TODO: add sound when you click locked level
             Debug.Log("LEVEL LOCKED");
-        }
+        }*/
+
+        LevelController.Instance().ChangeScene((Constants.Levels)num);
     }
 
     private void CloseAllUI()

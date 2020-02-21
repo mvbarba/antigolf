@@ -53,7 +53,7 @@ public class PlayerController : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         Debug.Log("COLLIDED WITH " + collision.gameObject.name);
-        if (collision.gameObject.tag == Constants.TAG_HOLE)
+        if (collision.gameObject.GetComponent<HoleController>() != null)
         {
             AudioManager.Instance().Play(Constants.SOUND_HOLE);
             StartFall(collision);

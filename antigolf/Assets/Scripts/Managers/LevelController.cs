@@ -53,7 +53,7 @@ public class LevelController : MonoBehaviour
 
     public void UnlockNextLevel()
     {
-        int num = SceneManager.GetActiveScene().buildIndex + 1;
+        int num = SceneManager.GetActiveScene().buildIndex;
         PlayerPrefs.SetInt("L" + num, 1);
         PlayerPrefs.Save();
     }

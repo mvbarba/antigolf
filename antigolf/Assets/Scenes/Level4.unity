@@ -2747,7 +2747,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -7595,6 +7595,11 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 5782938057737252148}
+    - target: {fileID: 9191654069045109641, guid: 77f868b8c84db5e4fab8e37378cb3e3b,
+        type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9191654069252647254, guid: 77f868b8c84db5e4fab8e37378cb3e3b,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -7613,6 +7618,11 @@ PrefabInstance:
     - target: {fileID: 9191654069342513639, guid: 77f868b8c84db5e4fab8e37378cb3e3b,
         type: 3}
       propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9191654070032972365, guid: 77f868b8c84db5e4fab8e37378cb3e3b,
+        type: 3}
+      propertyPath: m_RaycastTarget
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9191654070166238372, guid: 77f868b8c84db5e4fab8e37378cb3e3b,
