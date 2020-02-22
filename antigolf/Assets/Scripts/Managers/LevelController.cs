@@ -35,7 +35,10 @@ public class LevelController : MonoBehaviour
     public void NextLevel()
     {
         int num = SceneManager.GetActiveScene().buildIndex + 1;
-        StartCoroutine(SceneSwap((Constants.Levels)num));
+        if (num < SceneManager.sceneCountInBuildSettings)
+            StartCoroutine(SceneSwap((Constants.Levels)num));
+        else
+            StartCoroutine(SceneSwap(Constants.Levels.Menu));
     }
 
     public void ReloadScene()

@@ -64,6 +64,14 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == Constants.TAG_BUTTON)
+        {
+            collision.GetComponent<ButtonHandler>().Hit();
+        }
+    }
+
     Vector2 fallingPosition;
     Vector2 startingPosition;
     Vector2 startingScale; 
