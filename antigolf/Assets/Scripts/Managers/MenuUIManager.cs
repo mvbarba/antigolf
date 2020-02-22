@@ -9,7 +9,8 @@ public class MenuUIManager : MonoBehaviour
     {
         StartMenu,
         LevelSelect,
-        About
+        About,
+        More
     }
 
     [Serializable]
@@ -74,6 +75,11 @@ public class MenuUIManager : MonoBehaviour
     public void AboutButtonPressed()
     {
         OpenUI(UIType.About, true);
+    }
+
+    public void MoreButtonPressed()
+    {
+        OpenUI(UIType.More, true);
     }
 
     public void BackButtonPressed()

@@ -10,7 +10,7 @@ public class LockCheck : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (PlayerPrefs.GetInt("L" + level, 0) == 1)
-            GetComponent<Image>().color = Color.grey;
+        if (PlayerPrefs.GetInt("L" + level, 0) == 0)
+            GetComponent<Image>().color = Color.white;
     }
 }
