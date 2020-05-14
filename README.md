@@ -1,4 +1,6 @@
-![](/antigolf/Assets/Resources/Sprites/ANTIGOLFTEXT.png)
+<p align="center">
+  <img src=/antigolf/Assets/Resources/Sprites/ANTIGOLFTEXT.png>
+</p>
 
 ## For more information, view the gamepage here https://mbarba.itch.io/antigolf
 
